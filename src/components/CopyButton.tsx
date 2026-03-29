@@ -36,8 +36,8 @@ export default function CopyButton({ text, label = 'Copiar conversación' }: Cop
       className={`
         inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200
         ${copied
-          ? 'bg-emerald-100 text-emerald-700 border border-emerald-200'
-          : 'bg-ink-950 text-clay-50 hover:bg-ink-800 hover:shadow-md active:scale-[0.97]'
+          ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800'
+          : 'bg-ink-950 dark:bg-clay-100 text-clay-50 dark:text-ink-950 hover:bg-ink-800 dark:hover:bg-clay-200 hover:shadow-md active:scale-[0.97]'
         }
       `}
     >

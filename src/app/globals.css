@@ -20,6 +20,22 @@
   --scrollbar-thumb: #cdb89e;
 }
 
+.dark {
+  --bg-primary: #0f1115;
+  --bg-secondary: #1a1d24;
+  --bg-card: #22262e;
+  --text-primary: #e3e7ea;
+  --text-secondary: #a4b0ba;
+  --text-muted: #5c6c7a;
+  --border: #2e333b;
+  --accent: #f6b93b;
+  --accent-soft: #332a14;
+  --human-bg: #1a1d24;
+  --assistant-bg: #2a2518;
+  --scrollbar-track: #1a1d24;
+  --scrollbar-thumb: #3c434b;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -74,6 +90,19 @@ body {
   background: rgba(0, 0, 0, 0.06);
   padding: 0.15em 0.4em;
   border-radius: 4px;
+}
+
+.dark .message-content p code {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.dark .message-content pre {
+  background: #0f1115;
+  border: 1px solid #2e333b;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #5c6c7a;
 }
 
 /* Noise texture overlay */

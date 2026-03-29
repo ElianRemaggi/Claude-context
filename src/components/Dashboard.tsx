@@ -6,6 +6,7 @@ import ProjectSidebar from './ProjectSidebar';
 import SessionList from './SessionList';
 import ConversationView from './ConversationView';
 import SearchBar from './SearchBar';
+import ThemeToggle from './ThemeToggle';
 
 interface DashboardProps {
   projects: Project[];
@@ -97,12 +98,12 @@ export default function Dashboard({
   return (
     <div className="h-screen flex flex-col">
       {/* Top bar */}
-      <header className="flex items-center gap-3 px-3 md:px-4 py-3 border-b border-clay-200 bg-white/80 backdrop-blur-sm flex-shrink-0">
+      <header className="flex items-center gap-3 px-3 md:px-4 py-3 border-b border-clay-200 dark:border-ink-800 bg-white/80 dark:bg-ink-900/80 backdrop-blur-sm flex-shrink-0">
         {/* Mobile back button */}
         {mobileView !== 'projects' && (
           <button
             onClick={mobileView === 'conversation' ? handleBackToSessions : handleBackToProjects}
-            className="md:hidden p-1.5 -ml-1 rounded-md text-ink-500 hover:text-ink-800 hover:bg-clay-100 transition-all"
+            className="md:hidden p-1.5 -ml-1 rounded-md text-ink-500 hover:text-ink-800 dark:hover:text-ink-200 hover:bg-clay-100 dark:hover:bg-ink-800 transition-all"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="15 18 9 12 15 6" />
@@ -111,12 +112,12 @@ export default function Dashboard({
         )}
 
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-clay-200 flex items-center justify-center">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-clay-700">
+          <div className="w-7 h-7 rounded-lg bg-clay-200 dark:bg-ink-800 flex items-center justify-center">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-clay-700 dark:text-clay-300">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
             </svg>
           </div>
-          <h1 className="font-display text-base text-ink-900 hidden sm:block">Session Recovery</h1>
+          <h1 className="font-display text-base text-ink-900 dark:text-clay-100 hidden sm:block">Session Recovery</h1>
         </div>
 
         <div className="flex-1 max-w-md">
@@ -127,9 +128,11 @@ export default function Dashboard({
           />
         </div>
 
-        <div className="text-xs text-ink-300 hidden lg:block">
+        <div className="text-xs text-ink-300 dark:text-ink-500 hidden lg:block">
           {totalSessions} sesiones · {projects.length} proyectos
         </div>
+
+        <ThemeToggle />
       </header>
 
       {/* ═══ DESKTOP LAYOUT (md+): 3 columns ═══ */}
@@ -144,7 +147,7 @@ export default function Dashboard({
 
         {/* Center panel: session list */}
         {selectedProject ? (
-          <div className="w-80 flex-shrink-0 border-r border-clay-200 flex flex-col">
+          <div className="w-80 flex-shrink-0 border-r border-clay-200 dark:border-ink-800 flex flex-col">
             <SessionList
               sessions={filteredSessions}
               selectedSessionId={selectedSessionId}
@@ -153,7 +156,7 @@ export default function Dashboard({
             />
           </div>
         ) : (
-          <div className="w-80 flex-shrink-0 border-r border-clay-200 flex items-center justify-center text-ink-400 text-sm">
+          <div className="w-80 flex-shrink-0 border-r border-clay-200 dark:border-ink-800 flex items-center justify-center text-ink-400 dark:text-ink-500 text-sm">
             Seleccioná un proyecto
           </div>
         )}
@@ -167,8 +170,8 @@ export default function Dashboard({
         ) : (
           <div className="flex-1 flex items-center justify-center">
             <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-clay-100 flex items-center justify-center">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-clay-400">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-clay-100 dark:bg-ink-800 flex items-center justify-center">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-clay-400 dark:text-ink-500">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                   <polyline points="14 2 14 8 20 8" />
                   <line x1="16" y1="13" x2="8" y2="13" />
@@ -176,8 +179,8 @@ export default function Dashboard({
                   <polyline points="10 9 9 9 8 9" />
                 </svg>
               </div>
-              <p className="text-ink-500 text-sm">Seleccioná una sesión para ver la conversación</p>
-              <p className="text-ink-300 text-xs mt-1">Luego podés copiarla y pegarla en Claude</p>
+              <p className="text-ink-500 dark:text-ink-400 text-sm">Seleccioná una sesión para ver la conversación</p>
+              <p className="text-ink-300 dark:text-ink-600 text-xs mt-1">Luego podés copiarla y pegarla en Claude</p>
             </div>
           </div>
         )}
@@ -188,8 +191,8 @@ export default function Dashboard({
         {mobileView === 'projects' && (
           <div className="h-full overflow-y-auto">
             <div className="p-4">
-              <h2 className="font-display text-lg text-ink-900 mb-1">Proyectos</h2>
-              <p className="text-xs text-ink-400 mb-4">{projects.length} proyecto{projects.length !== 1 ? 's' : ''} · {totalSessions} sesiones</p>
+              <h2 className="font-display text-lg text-ink-900 dark:text-clay-100 mb-1">Proyectos</h2>
+              <p className="text-xs text-ink-400 dark:text-ink-500 mb-4">{projects.length} proyecto{projects.length !== 1 ? 's' : ''} · {totalSessions} sesiones</p>
               <div className="space-y-1.5">
                 {projects.map((project) => (
                   <button
@@ -197,18 +200,18 @@ export default function Dashboard({
                     onClick={() => handleSelectProjectMobile(project.id)}
                     className={`w-full text-left px-4 py-3 rounded-xl transition-all border ${
                       project.id === selectedProjectId
-                        ? 'bg-white border-clay-200 shadow-sm'
-                        : 'bg-white/40 border-transparent hover:bg-white hover:border-clay-200'
+                        ? 'bg-white dark:bg-ink-800 border-clay-200 dark:border-ink-700 shadow-sm'
+                        : 'bg-white/40 dark:bg-ink-800/30 border-transparent hover:bg-white dark:hover:bg-ink-800 hover:border-clay-200 dark:hover:border-ink-700'
                     }`}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3 min-w-0">
-                        <div className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${project.id === selectedProjectId ? 'bg-amber-500' : 'bg-clay-300'}`} />
-                        <p className="text-sm font-medium text-ink-800 truncate capitalize">{project.displayName}</p>
+                        <div className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${project.id === selectedProjectId ? 'bg-amber-500' : 'bg-clay-300 dark:bg-ink-600'}`} />
+                        <p className="text-sm font-medium text-ink-800 dark:text-ink-200 truncate capitalize">{project.displayName}</p>
                       </div>
                       <div className="flex items-center gap-2 flex-shrink-0">
-                        <span className="text-xs text-ink-400">{project.sessionCount}</span>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-ink-300">
+                        <span className="text-xs text-ink-400 dark:text-ink-500">{project.sessionCount}</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-ink-300 dark:text-ink-600">
                           <polyline points="9 18 15 12 9 6" />
                         </svg>
                       </div>
@@ -218,7 +221,7 @@ export default function Dashboard({
               </div>
               <button
                 onClick={onReloadFolder}
-                className="mt-6 w-full py-2.5 text-sm text-ink-400 hover:text-ink-700 border border-dashed border-clay-300 rounded-xl hover:border-clay-400 transition-all"
+                className="mt-6 w-full py-2.5 text-sm text-ink-400 dark:text-ink-500 hover:text-ink-700 dark:hover:text-ink-300 border border-dashed border-clay-300 dark:border-ink-700 rounded-xl hover:border-clay-400 dark:hover:border-ink-500 transition-all"
               >
                 Cambiar carpeta
               </button>

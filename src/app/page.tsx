@@ -40,7 +40,7 @@ export default function Home() {
         />
         {error && (
           <div className="fixed bottom-6 left-1/2 -translate-x-1/2 max-w-md w-full px-4">
-            <div className="bg-red-50 border border-red-200 rounded-xl p-4 text-sm text-red-700 shadow-lg animate-slide-up">
+            <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800 rounded-xl p-4 text-sm text-red-700 dark:text-red-400 shadow-lg animate-slide-up">
               {error}
             </div>
           </div>

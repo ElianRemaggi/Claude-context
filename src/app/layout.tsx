@@ -11,9 +11,25 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Inline script to set dark class before paint (prevents flash)
+  const themeScript = `
+    (function() {
+      try {
+        var theme = localStorage.getItem('theme');
+        var isDark = theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDark || theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch(e) {}
+    })();
+  `;
+
   return (
-    <html lang="es">
-      <body className="noise-bg min-h-screen">
+    <html lang="es" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="noise-bg min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-200">
         {children}
       </body>
     </html>

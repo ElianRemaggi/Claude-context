@@ -28,7 +28,7 @@ export default function SearchBar({ value, onChange, totalResults }: SearchBarPr
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder="Buscar en conversaciones…"
-        className="w-full pl-10 pr-4 py-2.5 bg-white border border-clay-200 rounded-lg text-sm text-ink-800 placeholder:text-ink-300 focus:outline-none focus:border-clay-400 focus:ring-2 focus:ring-clay-200/50 transition-all"
+        className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-ink-800 border border-clay-200 dark:border-ink-700 rounded-lg text-sm text-ink-800 dark:text-ink-100 placeholder:text-ink-300 dark:placeholder:text-ink-500 focus:outline-none focus:border-clay-400 dark:focus:border-ink-500 focus:ring-2 focus:ring-clay-200/50 dark:focus:ring-ink-700/50 transition-all"
       />
       {value && (
         <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">

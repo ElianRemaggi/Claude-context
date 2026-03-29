@@ -20,12 +20,12 @@ export default function ConversationView({ session, projectName }: ConversationV
   const clipboardText = formatSessionForClipboard(session, projectName);
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-clay-50/30">
+    <div className="flex-1 flex flex-col h-full bg-clay-50/30 dark:bg-ink-950/30">
       {/* Toolbar */}
-      <div className="flex items-center justify-between px-5 py-3 border-b border-clay-200 bg-white/70 backdrop-blur-sm">
+      <div className="flex items-center justify-between px-5 py-3 border-b border-clay-200 dark:border-ink-800 bg-white/70 dark:bg-ink-900/70 backdrop-blur-sm">
         <div>
-          <p className="text-sm font-medium text-ink-800">{session.fileName}</p>
-          <p className="text-xs text-ink-400">{session.messageCount} mensajes</p>
+          <p className="text-sm font-medium text-ink-800 dark:text-ink-200">{session.fileName}</p>
+          <p className="text-xs text-ink-400 dark:text-ink-500">{session.messageCount} mensajes</p>
         </div>
         <CopyButton text={clipboardText} />
       </div>
@@ -38,8 +38,8 @@ export default function ConversationView({ session, projectName }: ConversationV
               key={i}
               className={`animate-fade-in opacity-0 rounded-xl p-4 ${
                 msg.role === 'human'
-                  ? 'bg-white border border-clay-200 shadow-sm'
-                  : 'bg-amber-50/60 border border-amber-200/40'
+                  ? 'bg-white dark:bg-ink-800 border border-clay-200 dark:border-ink-700 shadow-sm'
+                  : 'bg-amber-50/60 dark:bg-amber-950/20 border border-amber-200/40 dark:border-amber-800/30'
               }`}
               style={{ animationDelay: `${Math.min(i * 0.03, 0.5)}s` }}
             >
@@ -48,8 +48,8 @@ export default function ConversationView({ session, projectName }: ConversationV
                 <span
                   className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full ${
                     msg.role === 'human'
-                      ? 'bg-ink-100 text-ink-600'
-                      : 'bg-amber-200/60 text-amber-800'
+                      ? 'bg-ink-100 dark:bg-ink-700 text-ink-600 dark:text-ink-300'
+                      : 'bg-amber-200/60 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300'
                   }`}
                 >
                   {msg.role === 'human' ? 'Tú' : 'Claude'}
@@ -57,7 +57,7 @@ export default function ConversationView({ session, projectName }: ConversationV
               </div>
 
               {/* Content */}
-              <div className="message-content text-sm text-ink-800 leading-relaxed whitespace-pre-wrap break-words">
+              <div className="message-content text-sm text-ink-800 dark:text-ink-200 leading-relaxed whitespace-pre-wrap break-words">
                 {msg.content}
               </div>
 
@@ -66,7 +66,7 @@ export default function ConversationView({ session, projectName }: ConversationV
                 <div className="mt-3">
                   <button
                     onClick={() => toggleTool(i)}
-                    className="inline-flex items-center gap-1.5 text-xs text-ink-400 hover:text-ink-600 transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs text-ink-400 dark:text-ink-500 hover:text-ink-600 dark:hover:text-ink-300 transition-colors"
                   >
                     <svg
                       width="12"
