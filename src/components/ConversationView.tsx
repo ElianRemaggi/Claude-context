@@ -18,16 +18,39 @@ export default function ConversationView({ session, projectName }: ConversationV
   };
 
   const clipboardText = formatSessionForClipboard(session, projectName);
+  const resumeCommand = `claude --resume ${session.sessionId}`;
 
   return (
     <div className="flex-1 flex flex-col h-full bg-clay-50/30 dark:bg-ink-950/30">
       {/* Toolbar */}
-      <div className="flex items-center justify-between px-5 py-3 border-b border-clay-200 dark:border-ink-800 bg-white/70 dark:bg-ink-900/70 backdrop-blur-sm">
-        <div>
-          <p className="text-sm font-medium text-ink-800 dark:text-ink-200">{session.fileName}</p>
-          <p className="text-xs text-ink-400 dark:text-ink-500">{session.messageCount} mensajes</p>
+      <div className="flex-shrink-0 border-b border-clay-200 dark:border-ink-800 bg-white/70 dark:bg-ink-900/70 backdrop-blur-sm">
+        {/* Top row: file info + copy conversation */}
+        <div className="flex items-center justify-between px-5 py-3">
+          <div>
+            <p className="text-sm font-medium text-ink-800 dark:text-ink-200">{session.fileName}</p>
+            <p className="text-xs text-ink-400 dark:text-ink-500">{session.messageCount} mensajes</p>
+          </div>
+          <CopyButton text={clipboardText} label="Copiar conversación" />
         </div>
-        <CopyButton text={clipboardText} />
+
+        {/* Resume command bar */}
+        <div className="px-5 pb-3">
+          <div className="flex items-center gap-2 bg-ink-950 dark:bg-black/40 rounded-lg px-3 py-2">
+            <div className="flex items-center gap-2 flex-1 min-w-0">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-400 flex-shrink-0">
+                <polyline points="4 17 10 11 4 5" />
+                <line x1="12" y1="19" x2="20" y2="19" />
+              </svg>
+              <code className="text-xs font-mono text-ink-200 truncate select-all">
+                {resumeCommand}
+              </code>
+            </div>
+            <CopyButton text={resumeCommand} label="Copiar" compact />
+          </div>
+          <p className="text-[10px] text-ink-400 dark:text-ink-600 mt-1.5 ml-1">
+            Pegá este comando en tu terminal para retomar la sesión en Claude Code
+          </p>
+        </div>
       </div>
 
       {/* Messages */}

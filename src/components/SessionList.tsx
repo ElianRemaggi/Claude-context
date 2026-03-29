@@ -67,10 +67,16 @@ export default function SessionList({
                   {formatPreview(session.firstHumanMessage)}
                 </p>
 
-                {/* File name */}
-                <p className="text-[10px] font-mono text-ink-300 dark:text-ink-600 mt-2 truncate">
-                  {session.fileName}
-                </p>
+                {/* Session ID */}
+                <div className="flex items-center gap-1.5 mt-2">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-ink-300 dark:text-ink-600 flex-shrink-0">
+                    <polyline points="4 17 10 11 4 5" />
+                    <line x1="12" y1="19" x2="20" y2="19" />
+                  </svg>
+                  <p className="text-[10px] font-mono text-ink-300 dark:text-ink-600 truncate">
+                    {session.sessionId}
+                  </p>
+                </div>
               </button>
             );
           })}

@@ -221,8 +221,12 @@ export function parseSessionFile(fileName: string, fileContent: string): Session
     }
   }
 
+  // Extract session ID from filename (e.g., "abc123-def456.jsonl" → "abc123-def456")
+  const sessionId = fileName.replace(/\.jsonl$/i, '');
+
   return {
     id: `${fileName}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+    sessionId,
     fileName,
     messages,
     firstHumanMessage,

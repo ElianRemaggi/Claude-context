@@ -40,6 +40,7 @@ export interface ToolUseEntry {
 
 export interface Session {
   id: string;
+  sessionId: string;
   fileName: string;
   messages: ParsedMessage[];
   firstHumanMessage: string;
